@@ -1,0 +1,35 @@
+flowchart LR
+ subgraph External["External Organisations / Data Partners"]
+        A["Org A"]
+        B["Org B"]
+        C["Org C"]
+        D["Org D"]
+  end
+ subgraph Sharing["Data Sharing"]
+        SFTP["SFTP (SSH key-based)\ Scheduled File Uploads"]
+        E8["Eight Wire Data Exchange\ Controlled Data Exchange)"]
+  end
+ subgraph Landing["OT Landing Zone"]
+        FS["OT File Server\Source Files &amp; Encrypted Data"]
+        DL["Raw Landing Storage"]
+  end
+ subgraph Lakehouse["Databricks Lakehouse"]
+        BR["Bronze\Raw Data + Schema Capture"]
+        SI["Silver\Business Rules + Standardization"]
+        GO["Gold\Star Schema (Dims + Facts)"]
+  end
+ subgraph Consume["Consumption"]
+        PBI["Power BI\Dashboards &amp; Semantic Model"]
+        SHARE["Downstream Data Shares\Other Agencies\ Teams"]
+  end
+    A --> SFTP
+    B --> SFTP
+    C --> SFTP
+    D --> E8
+    SFTP --> FS
+    E8 --> FS
+    FS --> DL
+    DL --> BR
+    BR --> SI
+    SI --> GO
+    GO --> PBI & SHARE
