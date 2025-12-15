@@ -1,0 +1,25 @@
+flowchart TB
+    SRC["bronze_funding_contracting_data (UC Delta table)"] --> BR["Bronze
+        - raw ingest
+        - column standardisation
+        - lineage columns"]
+    BR --> SI["Silver
+        - business rules
+        - null handling
+        - type casting
+        - filtering (e.g. Contracted_Service_Total >= 5)"]
+    SI --> DIMS["Gold Dimensions
+        - Dim Provider
+        - Dim Contract
+        - Dim Service
+        - Dim Funding Item
+        - Dim Date"] & FACT["Gold Fact
+        - fact_funding_values
+        - provider_sk
+        - contract_sk
+        - service_sk
+        - funding_item_sk
+        - start_of_fy_sk
+        - measures"]
+    DIMS --> FACT
+    FACT --> PBI["Power BI / Analytics"]
