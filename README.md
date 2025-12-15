@@ -1,4 +1,4 @@
-# OT Data Modernisation – Lakehouse Proof of Concept
+# Data Modernisation – Lakehouse Proof of Concept
 
 ## Overview
 
